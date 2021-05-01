@@ -21,7 +21,7 @@ Số liệu cho thấy răng hàng tỉ đo được tri cho việc quản lí b
   
   
   ## b. Mô hình AI: 
-  Sequential, bao gồm 3 convolutional layers, 1 layer flatten, 2 layer Dense với Dropout để giảm overfitting, và optimizer Adam.
+  Sequential, bao gồm  convolutional layers, 1 layer flatten, 2 layer Dense với Dropout để giảm overfitting, và optimizer Adam.
   
   Link tới Kaggle Notebook dùng để train model: [Kaggle](https://www.kaggle.com/bachchan1232313/plant-vision)
   
