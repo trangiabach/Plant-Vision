@@ -13,14 +13,14 @@ Số liệu cho thấy răng hàng tỉ đo được tri cho việc quản lí b
 # Cấu trúc
 
   
-  # a. Dataset: 
+  ## a. Dataset: 
   
   Được train bằng dataset gồm hơn 200000 ảnh của các loại lá của Plant Village (3 loại: Potato, Tomato và Pepperbell) với 15 trạng thái. Do hạn chế về thời gian và computing power nên model mới được train bằng dataset này. Trong những bản update sắp tới, dự định sẽ có hơn 50000 ảnh của 6 loại cây với 38 trạng thái.
   
   Link tới dataset: [PlantVillage](https://www.kaggle.com/emmarex/plantdisease)
   
   
-  # b. Mô hình AI: 
+  ## b. Mô hình AI: 
   Sequential, bao gồm 3 convolutional layers, 1 layer flatten, 2 layer Dense với Dropout để giảm overfitting, và optimizer Adam.
   
   Link tới Kaggle Notebook dùng để train model: [Kaggle](https://www.kaggle.com/bachchan1232313/plant-vision)
