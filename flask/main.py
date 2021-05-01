@@ -17,11 +17,12 @@ from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
 # Define a flask app
-app = Flask(__name__, static_folder='../client/dist',    static_url_path='/')
+app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://sql6409422:YQYYXyF9sw@sql6.freemysqlhosting.net/sql6409422"
+db_host = "mysql://sql6409422:YQYYXyF9sw@sql6.freemysqlhosting.net/sql6409422" #online hosting
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://bach:bach@localhost/plant_disease"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['UPLOAD_PATH'] = 'uploads'
+app.config['UPLOAD_PATH'] = 'D:/plant-disease-detector/templates'
 CORS(app)
 
 db.init_app(app)
@@ -32,7 +33,7 @@ with app.app_context():
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 UPLOAD_FOLDER = 'uploads'
 
-model =tf.keras.models.load_model('detection-model.h5',compile=False)
+model =tf.keras.models.load_model('D:/plant-disease-detector/detection-model-plant-official-90.h5',compile=False)
 
 
 def model_predict(img_path, model):
@@ -54,6 +55,7 @@ def upload():
         #save the file to ./uploads
         basepath = os.path.dirname(__file__)
         file_path = os.path.join(app.config['UPLOAD_PATH'], secure_filename(f.filename))
+        print(file_path)
         f.save(file_path)
         print(basepath)
 
@@ -61,13 +63,15 @@ def upload():
         preds = model_predict(file_path, model)
         print(preds[0])
 
-        disease_class = ['Pepper__bell___Bacterial_spot', 'Pepper__bell___healthy', 'Potato___Early_blight',
-                         'Potato___Late_blight', 'Potato___healthy', 'Tomato_Bacterial_spot', 'Tomato_Early_blight',
-                         'Tomato_Late_blight', 'Tomato_Leaf_Mold', 'Tomato_Septoria_leaf_spot',
-                         'Tomato_Spider_mites_Two_spotted_spider_mite', 'Tomato__Target_Spot',
-                         'Tomato__Tomato_YellowLeaf__Curl_Virus', 'Tomato__Tomato_mosaic_virus', 'Tomato_healthy']
+        disease_class = ['Pepper__bell___Bacterial_spot', 'Potato___healthy',
+                         'Tomato_Leaf_Mold', 'Tomato__Tomato_YellowLeaf__Curl_Virus',
+                         'Tomato_Bacterial_spot', 'Tomato_Septoria_leaf_spot', 'Tomato_healthy',
+                         'Tomato_Spider_mites_Two_spotted_spider_mite', 'Tomato_Early_blight',
+                         'Tomato__Target_Spot', 'Pepper__bell___healthy', 'Potato___Late_blight',
+                         'Tomato_Late_blight', 'Potato___Early_blight', 'Tomato__Tomato_mosaic_virus']
         a = preds[0]
         ind=np.argmax(a)
+        print(ind)
         print('Prediction:', disease_class[ind])
         result=disease_class[ind]
         query = Disease.query.filter_by(name=result).first()
@@ -79,17 +83,19 @@ def upload():
             "solutions": query.solutions,
         })
     if request.method == "GET":
-        disease_class = ['Pepper__bell___Bacterial_spot', 'Pepper__bell___healthy', 'Potato___Early_blight',
-                         'Potato___Late_blight', 'Potato___healthy', 'Tomato_Bacterial_spot', 'Tomato_Early_blight',
-                         'Tomato_Late_blight', 'Tomato_Leaf_Mold', 'Tomato_Septoria_leaf_spot',
-                         'Tomato_Spider_mites_Two_spotted_spider_mite', 'Tomato__Target_Spot',
-                         'Tomato__Tomato_YellowLeaf__Curl_Virus', 'Tomato__Tomato_mosaic_virus', 'Tomato_healthy']
+        disease_class = ['Pepper__bell___Bacterial_spot', 'Potato___healthy',
+                         'Tomato_Leaf_Mold', 'Tomato__Tomato_YellowLeaf__Curl_Virus',
+                         'Tomato_Bacterial_spot', 'Tomato_Septoria_leaf_spot', 'Tomato_healthy',
+                         'Tomato_Spider_mites_Two_spotted_spider_mite', 'Tomato_Early_blight',
+                         'Tomato__Target_Spot', 'Pepper__bell___healthy', 'Potato___Late_blight',
+                         'Tomato_Late_blight', 'Potato___Early_blight', 'Tomato__Tomato_mosaic_virus']
         return jsonify({
-            "diseases": ['Pepper__bell___Bacterial_spot', 'Pepper__bell___healthy', 'Potato___Early_blight',
-                         'Potato___Late_blight', 'Potato___healthy', 'Tomato_Bacterial_spot', 'Tomato_Early_blight',
-                         'Tomato_Late_blight', 'Tomato_Leaf_Mold', 'Tomato_Septoria_leaf_spot',
-                         'Tomato_Spider_mites_Two_spotted_spider_mite', 'Tomato__Target_Spot',
-                         'Tomato__Tomato_YellowLeaf__Curl_Virus', 'Tomato__Tomato_mosaic_virus', 'Tomato_healthy']
+            "diseases": ['Pepper__bell___Bacterial_spot', 'Potato___healthy',
+                         'Tomato_Leaf_Mold', 'Tomato__Tomato_YellowLeaf__Curl_Virus',
+                         'Tomato_Bacterial_spot', 'Tomato_Septoria_leaf_spot', 'Tomato_healthy',
+                         'Tomato_Spider_mites_Two_spotted_spider_mite', 'Tomato_Early_blight',
+                         'Tomato__Target_Spot', 'Pepper__bell___healthy', 'Potato___Late_blight',
+                         'Tomato_Late_blight', 'Potato___Early_blight', 'Tomato__Tomato_mosaic_virus']
         })
     return None
 
