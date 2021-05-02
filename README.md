@@ -6,7 +6,7 @@ Plant Vision là một ứng dụng web sử dụng AI để xác định đư�
 
 Quản lí bệnh cây trồng là một trong những yếu tố hết sức quan trọng trong đảm bảo chất lượng nông nghiệp và bảo tồn đa dạng sinh học. Tuy thế, các phương pháp để xác định bệnh của cây vẫn còn chậm và không hiệu quả. Plant Vision được sinh ra từ ý tưởng rằng nếu có thể tạo ra công cụ chẩn đoán bệnh ngay trên các thiết bị của chúng ta thì việc xác định bệnh cây trồng sẽ rất nhanh, hiệu quả và cá nhân hóa. Sử dụng convolutional neural network để phân loại ảnh, Plant Vision có khả năng trở thành giải pháp nhanh gọn đối với các nông dân, nhà nghiên cứu, học sinh,... để có thể phát hiện ra các bệnh câu trồng ngay từ những tấm ảnh.
 
-# Tầm quan trong
+# Tầm quan trọng
 
 Số liệu cho thấy răng hàng tỉ đo được tri cho việc quản lí bệnh cây trồng nhưng do chất lượng kĩ thuật kém và thủ công nên phương pháp này thường không hiệu quả. Thiệt hại về sản lượng do không thể xác định các bệnh cây trồng hiệu quả không chỉ tác động đến nền nông nghiệp mà còn rất nhiều cộng động dựa dẫm vào các nguồn thức ăn bị lây nhiễm. Chính vì thế, với khả năng tự động hóa việc chẩn đoán bệnh cây, Plant Vision có tiềm năng trở thành công cụ quan trọng trong việc quản lý nông nghiệp nhanh chóng và xác định được bệnh sớm để phòng ngừa, bảo vệ đa dạng sinh học. 
 
