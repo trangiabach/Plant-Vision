@@ -25,7 +25,7 @@ Số liệu cho thấy răng hàng tỉ đo được tri cho việc quản lí b
   
   Link tới Kaggle Notebook dùng để train model: [Kaggle](https://www.kaggle.com/bachchan1232313/plant-vision)
   
-  Sau khi được train, model đat độ accuracy chính xác nhất là 91%.
+  Sau khi được train, model đạt độ accuracy chính xác nhất là 91%.
   
 
 # Web App
